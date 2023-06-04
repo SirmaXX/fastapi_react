@@ -1,0 +1,44 @@
+version: '3'
+services:
+  frontend:
+    container_name: frontend 
+    image: frontend 
+    build: ./frontend 
+    ports:
+      - 3000:3000
+    depends_on:
+      - backend
+
+
+
+  backend:
+    container_name: backend
+    image: backend
+    build: ./backend
+    volumes:
+      - ./backend/:/app/
+    expose:
+      - 5003
+    ports:
+      - "8000:8000"
+    restart: on-failure
+
+  
+  db:
+    container_name: db_duyuru
+    image: postgres:12
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=postgres
+    command: -p 5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+
+volumes:
+    pgdata: 
+    #db1-data:
