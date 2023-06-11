@@ -1,0 +1,3 @@
+[submodule "Log_manager"]
+	path = Log_manager
+	url = https://github.com/SirmaXX/Log_manager
