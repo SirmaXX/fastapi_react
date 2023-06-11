@@ -1,7 +1,7 @@
 version: '3'
 services:
   frontend:
-    container_name: frontend 
+    container_name: frontendd
     image: frontend 
     build: ./frontend 
     ports:
@@ -22,14 +22,17 @@ services:
     ports:
       - "8000:8000"
     restart: on-failure
+    depends_on:
+       - db
+
 
   
   db:
-    container_name: db_example
+    container_name: postre_ex
     image: postgres:12
     restart: always
     ports:
-      - "5434:5432"
+      - "5435:5432"
     environment:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_USER=postgres
